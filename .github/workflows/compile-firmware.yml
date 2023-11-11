@@ -1,1 +1,19 @@
+name: Compile Firmware
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Compile firmware
+        run: make
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: firmware
+          path: ./custom-bin
